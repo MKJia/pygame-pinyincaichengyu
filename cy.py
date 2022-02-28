@@ -21,6 +21,7 @@ chinese = v[index][0]
 
 #print(json.dumps([chinese], ensure_ascii=False))
 while True:
+    res=0
     guess1 = raw_input("guess1:\n")
     guess1_list = guess1.split(" ")
     if(len(guess1_list) != 4):
@@ -60,6 +61,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[0][i])
+            res = 1
     # print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -68,6 +70,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[1][i])
+            res = 1
     # print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -76,6 +79,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[2][i])
+            res = 1
     # print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -84,6 +88,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[3][i])
+            res = 1
     # print(tmp_str)
     # print(rest_table)
     rest_list = list(rest_table)
@@ -94,10 +99,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[0][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[0][i])
             # # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -105,10 +112,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[1][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[1][i])
             # # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -116,10 +125,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[2][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[2][i])
             # # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -127,15 +138,18 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[3][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[3][i])
             # # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str)
 
     break
 
-while True:
+while res==1:
+
     guess1 = raw_input("guess2:\n")
     guess1_list = guess1.split(" ")
     if(len(guess1_list) != 4):
@@ -165,6 +179,7 @@ while True:
     elif(str(guess1_list[3]) not in ii):
         print("第4个字拼音拼写错误")
         continue
+    res=0
     # print(guess1_list)
     # print(answer)
     tmp_str = ""
@@ -175,6 +190,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[0][i])
+            res = 1
     # print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -183,6 +199,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[1][i])
+            res = 1
     # print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -191,6 +208,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[2][i])
+            res = 1
     # print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -199,6 +217,7 @@ while True:
         else:
             tmp_str+=("0")
             rest_table+=str(answer[3][i])
+            res = 1
     # print(tmp_str)
     # print(rest_table)
     rest_list = list(rest_table)
@@ -209,10 +228,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[0][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[0][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -220,10 +241,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[1][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[1][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -231,10 +254,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[2][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[2][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -242,15 +267,17 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[3][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[3][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str)
 
     break
 
-while True:
+while res==1:
     guess1 = raw_input("guess3:\n")
     guess1_list = guess1.split(" ")
     if(len(guess1_list) != 4):
@@ -280,6 +307,7 @@ while True:
     elif(str(guess1_list[3]) not in ii):
         print("第4个字拼音拼写错误")
         continue
+    res=0
     # print(guess1_list)
     # print(answer)
     tmp_str = ""
@@ -289,6 +317,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[0][i])
     # print(tmp_str),
     tmp_str = ""
@@ -297,6 +326,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[1][i])
     # print(tmp_str),
     tmp_str = ""
@@ -305,6 +335,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[2][i])
     # print(tmp_str),
     tmp_str = ""
@@ -313,6 +344,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[3][i])
     # print(tmp_str)
     # print(rest_table)
@@ -324,10 +356,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[0][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[0][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -335,10 +369,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[1][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[1][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -346,10 +382,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[2][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[2][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -357,15 +395,17 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[3][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[3][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str)
 
     break
 
-while True:
+while res==1:
     guess1 = raw_input("guess4:\n")
     guess1_list = guess1.split(" ")
     if(len(guess1_list) != 4):
@@ -395,6 +435,7 @@ while True:
     elif(str(guess1_list[3]) not in ii):
         print("第4个字拼音拼写错误")
         continue
+    res=0
     # print(guess1_list)
     # print(answer)
     tmp_str = ""
@@ -404,6 +445,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[0][i])
     # print(tmp_str),
     tmp_str = ""
@@ -412,6 +454,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[1][i])
     # print(tmp_str),
     tmp_str = ""
@@ -420,6 +463,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[2][i])
     # print(tmp_str),
     tmp_str = ""
@@ -428,6 +472,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[3][i])
     # print(tmp_str)
     # print(rest_table)
@@ -439,10 +484,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[0][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[0][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -450,10 +497,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[1][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[1][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -461,10 +510,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[2][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[2][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -472,15 +523,17 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[3][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[3][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str)
 
     break
 
-while True:
+while res==1:
     guess1 = raw_input("guess5:\n")
     guess1_list = guess1.split(" ")
     if(len(guess1_list) != 4):
@@ -510,6 +563,7 @@ while True:
     elif(str(guess1_list[3]) not in ii):
         print("第4个字拼音拼写错误")
         continue
+    res=0
     # print(guess1_list)
     # print(answer)
     tmp_str = ""
@@ -519,6 +573,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[0][i])
     # print(tmp_str),
     tmp_str = ""
@@ -527,6 +582,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[1][i])
     # print(tmp_str),
     tmp_str = ""
@@ -535,6 +591,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[2][i])
     # print(tmp_str),
     tmp_str = ""
@@ -543,6 +600,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[3][i])
     # print(tmp_str)
     # print(rest_table)
@@ -554,10 +612,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[0][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[0][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -565,10 +625,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[1][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[1][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -576,10 +638,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[2][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[2][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -587,15 +651,17 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[3][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[3][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str)
 
     break
 
-while True:
+while res==1:
     guess1 = raw_input("guess6:\n")
     guess1_list = guess1.split(" ")
     if(len(guess1_list) != 4):
@@ -625,6 +691,7 @@ while True:
     elif(str(guess1_list[3]) not in ii):
         print("第4个字拼音拼写错误")
         continue
+    res=0
     # print(guess1_list)
     # print(answer)
     tmp_str = ""
@@ -634,6 +701,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[0][i])
     # print(tmp_str),
     tmp_str = ""
@@ -642,6 +710,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[1][i])
     # print(tmp_str),
     tmp_str = ""
@@ -650,6 +719,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[2][i])
     # print(tmp_str),
     tmp_str = ""
@@ -658,6 +728,7 @@ while True:
             tmp_str+=str("1")
         else:
             tmp_str+=("0")
+            res = 1
             rest_table+=str(answer[3][i])
     # print(tmp_str)
     # print(rest_table)
@@ -669,10 +740,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[0][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[0][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count2):
@@ -680,10 +753,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[1][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[1][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count3):
@@ -691,10 +766,12 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[2][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[2][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str),
     tmp_str = ""
     for i in range(count4):
@@ -702,11 +779,13 @@ while True:
             tmp_str+=str("1")
         elif(guess1_list[3][i] not in rest_list):
             tmp_str+=("0")
+            res = 1
         else:
             rest_list.remove(guess1_list[3][i])
             # print(rest_list)
             tmp_str+=str("2")
+            res = 1
     print(tmp_str)
-
     break
 
+print(json.dumps([chinese], ensure_ascii=False))
