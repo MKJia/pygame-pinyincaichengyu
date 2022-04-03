@@ -18,6 +18,7 @@ count1 = len(answer[0])
 count2 = len(answer[1])
 count3 = len(answer[2])
 count4 = len(answer[3])
+count_all = [count1, count2, count3, count4]
 
 
 
@@ -36,63 +37,6 @@ count4 = len(answer[3])
 
 
 
-
-
-
-
-def button (msg, x, y, w, h, ic, ac):
-    mouse =pygame.mouse.get_pos()
-    if x + w > mouse[0] > x and y + h > mouse[1] > y:
-        pygame.draw.rect(window_Surface, ac, (x,y,w,h))
-    else:
-        pygame.draw.rect(window_Surface, ic, (x,y,w,h))
-    smallText = pygame.font.SysFont("arial", 20)
-    textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ( (x+(w/2)), (y+(h/2)))
-    window_Surface.blit(textSurf, textRect)
-
-
-def text_objects(text, font):
-    textSurface = font.render(text, True, Black)
-    return textSurface, textSurface.get_rect()
-
-def is_Point_Inside_Rect(x, y, rect):
-    if (x > rect.left) and (x < rect.right) and (y > rect.top ) and (y < rect .bottom):
-        return True
-    else:
-        return False
-def show_blocks_six(count, pos):
-    blocks = []
-    for n in range(6):
-        for i in range(count):
-            print(b_first_width+(pos-1)*(b_word_all+b_insert_unit*3)+i*(b_insert_unit/(count-1)+b_length))
-            blocks.append({'rect':pygame.Rect(b_first_width+(pos-1)*(b_word_all+b_insert_unit*3)+i*(b_insert_unit/(count-1)+b_word_all/count), b_height_first+n*(b_first_width+b_jump), b_word_all/count, b_length),'color':WHITE, 'dir':up_Right})
-    return blocks
-
-def add_keyboard_key(count):
-    if(count < 10):
-        row = 0
-        count -= 0
-    elif(count < 19):
-        row = 1
-        count -= 10
-    else:
-        row = 2
-        count -= 19
-    return {'rect':pygame.Rect(100+row*25+70*count, 500+row*70, 50, 50),'color':WHITE, 'dir':up_Right}
-
-pygame.init()
-
-init_time=time.time()
-cur_time=init_time
-window_Width = 960
-window_Height = 960
-
-
-
-window_Surface = pygame.display.set_mode((window_Width, window_Height), 0, 32)
-
-pygame.display.set_caption("Caiji J's game")
 
 down_Left = 1
 down_Right = 3
@@ -115,6 +59,88 @@ b_height_first = 50
 b_height_add = 20
 b_jump = 20
 b_word_all = 120
+input_cnt = 0
+
+
+
+def button (msg, x, y, w, h, ic, ac):
+    mouse =pygame.mouse.get_pos()
+    if x + w > mouse[0] > x and y + h > mouse[1] > y:
+        pygame.draw.rect(window_Surface, ac, (x,y,w,h))
+    else:
+        pygame.draw.rect(window_Surface, ic, (x,y,w,h))
+    smallText = pygame.font.SysFont("arial", 26, bold=True)
+    textSurf, textRect = text_objects(msg, smallText)
+    textRect.center = ( (x+(w/2)), (y+(h/2)))
+    window_Surface.blit(textSurf, textRect)
+
+
+def text_objects(text, font):
+    textSurface = font.render(text, True, Black)
+    return textSurface, textSurface.get_rect()
+
+def is_Point_Inside_Rect(x, y, rect):
+    if (x > rect.left) and (x < rect.right) and (y > rect.top ) and (y < rect .bottom):
+        return True
+    else:
+        return False
+def show_blocks_six(count, pos):
+    blocks = []
+    for n in range(6):
+        for i in range(count):
+            print(b_first_width+(pos-1)*(b_word_all+b_insert_unit*3)+i*(b_insert_unit/(count-1)+b_length))
+            blocks.append({'rect':pygame.Rect(b_first_width+(pos-1)*(b_word_all+b_insert_unit*3)+i*(b_insert_unit/(count-1)+b_word_all/count), b_height_first+n*(b_first_width+b_jump), b_word_all/count, b_length),'color':WHITE, 'dir':up_Right})
+    return blocks
+
+def draw_input_button(msg, count, try_times):
+    pos = 0
+    if(count >= count1+count2):
+        if(count >= count1+count2+count3):
+            pos = 4
+            count -= count1+count2+count3
+        else:
+            pos = 3
+            count -= count1+count2
+    else:
+        if(count < count1):
+            pos = 1
+        else:
+            pos = 2
+            count -= count1
+    last_count = 0
+    for p in range(pos):
+        if(p == pos - 1):
+            this_word_count = count
+        else:
+            this_word_count = count_all[p]
+        for i in range(this_word_count):
+            button(msg[i+last_count], b_first_width+p*(b_word_all+b_insert_unit*3)+i*(b_insert_unit/(count_all[p]-1)+b_word_all/count_all[p]), b_height_first+try_times*(b_first_width+b_jump), b_word_all/count_all[p], b_length, WHITE, GREEN)
+        last_count += count_all[p]
+
+def add_keyboard_key(count):
+    tmp = count
+    if(count < 10):
+        row = 0
+        tmp -= 0
+    elif(count < 19):
+        row = 1
+        tmp -= 10
+    else:
+        row = 2
+        tmp -= 19
+    button(key[count], 100+row*25+70*tmp, 500+row*70, 50, 50, WHITE, GREEN )
+
+pygame.init()
+
+init_time=time.time()
+cur_time=init_time
+window_Width = 960
+window_Height = 960
+
+window_Surface = pygame.display.set_mode((window_Width, window_Height), 0, 32)
+
+pygame.display.set_caption("Caiji J's game")
+
 
 blocks1 = show_blocks_six(count1,1)
 blocks2 = show_blocks_six(count2,2)
@@ -122,17 +148,16 @@ blocks3 = show_blocks_six(count3,3)
 blocks4 = show_blocks_six(count4,4)
 blockss = [blocks1, blocks2, blocks3, blocks4]
 
-key_blocks = []
-key = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o' ,'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'return', 'backspace']
-alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'return', 'enter']
-for i in range(28):#26+enter+backspace
-    key_blocks.append(add_keyboard_key(i))
+key = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o' ,'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'z', 'x', 'c', 'v', 'b', 'n', 'm', 'enter', 'back']
+alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'return', 'backspace']
 
 #blocks = [b1, b2, b3, b4, b5, b6]
 judge = True
 re = 'n'
+input_letters = []
 while 1:
-    window_Surface.fill(Black)
+    # window_Surface.fill(Black)
+
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -141,19 +166,27 @@ while 1:
             buttons = event.key
             if(buttons == 8):
                 print(alphabet[26])
+                if(len(input_letters)>0):
+                    input_cnt -= 1
+                    input_letters.pop(-1)
             elif(buttons == 13):
                 print(alphabet[27])
-            else:
+            elif(buttons >= 97 and buttons <= 122):
+                if(input_cnt == count1+count2+count3+count4):
+                    break
                 print(alphabet[buttons-97])
-            
+                input_letters.append(alphabet[buttons-97])
+                input_cnt += 1
 
     for bl in blockss:
         for b in bl:
             pygame.draw.rect(window_Surface, b['color'], b['rect'])
     
-    for key in key_blocks:
-        pygame.draw.rect(window_Surface, key['color'], key['rect'])
-        
+    draw_input_button(input_letters, input_cnt, 0)
+    
+    for i in range(28):#26+enter+backspace
+        add_keyboard_key(i)
+    pygame.display.update()
 #重置
     if judge:
         pygame.display.update()
