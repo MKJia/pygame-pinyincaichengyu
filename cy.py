@@ -19,6 +19,7 @@ count2 = len(answer[1])
 count3 = len(answer[2])
 count4 = len(answer[3])
 count_all = [count1, count2, count3, count4]
+count_all_add = [count1, count1+count2, count1+count2+count3, count1+count2+count3+count4]
 
 
 
@@ -130,6 +131,37 @@ def add_keyboard_key(count):
         tmp -= 19
     button(key[count], 100+row*25+70*tmp, 500+row*70, 50, 50, WHITE, GREEN )
 
+def mainJudge(guess1_list):
+    if(len(guess1_list) != 4):
+        print("成语长度错误")
+        print(guess1_list)
+        return False
+    elif(len(guess1_list[0])) != count1:
+        print("第1个字拼音长度错误")
+        return False
+    elif(len(guess1_list[1])) != count2:
+        print("第2个字拼音长度错误")
+        return False    
+    elif(len(guess1_list[2])) != count3:
+        print("第3个字拼音长度错误")
+        return False
+    elif(len(guess1_list[3])) != count4:
+        print("第4个字拼音长度错误")
+        return False
+    elif(str(guess1_list[0]) not in ii):
+        print("第1个字拼音拼写错误")
+        return False
+    elif(str(guess1_list[1]) not in ii):
+        print("第2个字拼音拼写错误")
+        return False
+    elif(str(guess1_list[2]) not in ii):
+        print("第3个字拼音拼写错误")
+        return False
+    elif(str(guess1_list[3]) not in ii):
+        print("第4个字拼音拼写错误")
+        return False
+    return True
+
 pygame.init()
 
 init_time=time.time()
@@ -155,6 +187,11 @@ alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'
 judge = True
 re = 'n'
 input_letters = []
+input_letters_container = []
+input_cnt_container = []
+guess1_list = []
+guess1 = ""
+try_times = 0
 while 1:
     # window_Surface.fill(Black)
 
@@ -171,6 +208,29 @@ while 1:
                     input_letters.pop(-1)
             elif(buttons == 13):
                 print(alphabet[27])
+                j = 0
+                for i in range(len(input_letters)):
+                    if(i>=count_all_add[j]):
+                        j += 1
+                        guess1_list.append(guess1)
+                        guess1 = ""
+                    guess1 += input_letters[i]
+                guess1_list.append(guess1)
+                word_correct_judge = mainJudge(guess1_list)
+                print(word_correct_judge)
+                if(word_correct_judge):
+                    guess1_list = []
+                    guess1 = ""
+                    try_times+=1
+                    input_letters_container.append(input_letters)
+                    input_letters = []
+                    input_cnt_container.append(input_cnt)
+                    input_cnt = 0
+                else:
+                    guess1_list = []
+                    guess1 = ""
+                    input_letters = []
+                    input_cnt = 0
             elif(buttons >= 97 and buttons <= 122):
                 if(input_cnt == count1+count2+count3+count4):
                     break
@@ -182,7 +242,14 @@ while 1:
         for b in bl:
             pygame.draw.rect(window_Surface, b['color'], b['rect'])
     
-    draw_input_button(input_letters, input_cnt, 0)
+    for i in range(try_times+1):
+        # print(len(input_letters_container))
+        if(i != try_times and len(input_letters_container)>0):
+            draw_input_button(input_letters_container[i], input_cnt_container[i], i)
+        else:
+            if(len(input_letters)>0):
+                draw_input_button(input_letters, input_cnt, i)
+
     
     for i in range(28):#26+enter+backspace
         add_keyboard_key(i)
